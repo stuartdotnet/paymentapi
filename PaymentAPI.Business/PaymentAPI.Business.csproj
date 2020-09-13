@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PaymentAPI.Data\PaymentAPI.Data.csproj" />
+    <ProjectReference Include="..\PaymentAPI.Models\PaymentAPI.Model.csproj" />
+  </ItemGroup>
+
+</Project>
