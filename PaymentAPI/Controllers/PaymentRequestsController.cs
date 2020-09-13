@@ -56,10 +56,10 @@ namespace PaymentAPI.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [HttpDelete("{paymentRequestId}")]
-        public async Task<IActionResult> CancelPaymentRequest(int paymentRequestId, [FromQuery]string reason)
+        public async Task<IActionResult> CancelPaymentRequest(int paymentRequestId, [FromQuery] string reason)
         {
             var result = await _paymentService.CancelPaymentRequest(paymentRequestId, reason);
-            
+
             if (result.Success)
             {
                 return Ok();
@@ -107,9 +107,9 @@ namespace PaymentAPI.Controllers
             var payments = _paymentService.GetPaymentRequests(accountId);
 
             return Ok(new BalanceAndPaymentRequests()
-            { 
+            {
                 Balance = balanceResult.Entity,
-                PaymentRequests = payments.Select(p => _mapper.Map<PaymentRequestItem>(p)) 
+                PaymentRequests = payments.Select(p => _mapper.Map<PaymentRequestItem>(p))
             });
         }
     }

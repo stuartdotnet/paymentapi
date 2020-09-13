@@ -25,7 +25,9 @@ namespace PaymentAPI.IntegrationTests
             return new List<PaymentRequest>()
             {
                 new PaymentRequest { AccountId = 1, Amount = 100, Status = PaymentStatus.Pending },
-                new PaymentRequest { AccountId = 2, Amount = 120, Status = PaymentStatus.Closed }
+                new PaymentRequest { AccountId = 2, Amount = 100, Status = PaymentStatus.Closed },
+                new PaymentRequest { AccountId = 3, Amount = 100, Status = PaymentStatus.Pending },
+                new PaymentRequest { AccountId = 4, Amount = 100, Status = PaymentStatus.Pending },
             };
         }
 
@@ -33,7 +35,10 @@ namespace PaymentAPI.IntegrationTests
         {
             return new List<Account>()
             {
-                new Account { AccountId = 1, Balance = 100 }
+                new Account { AccountId = 1, Balance = 200 },
+                new Account { AccountId = 2, Balance = 200 },
+                new Account { AccountId = 3, Balance = 200 },
+                new Account { AccountId = 4, Balance = 200 },
             };
         }
     }

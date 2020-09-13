@@ -20,6 +20,30 @@ namespace PaymentAPI.UnitTests
         }
 
         [Test]
+        public async Task WhenAmountLessThanZero_PaymentNotSaved()
+        {
+            var paymentRequest = new PaymentRequest() { Amount = -1 };
+
+            var sut = new PaymentService(_paymentData.Object, _accountData.Object);
+
+            var result = await sut.CreatePaymentRequest(paymentRequest);
+
+            Assert.AreEqual(false, result.Success);
+        }
+
+        [Test]
+        public async Task WhenAmountZero_PaymentNotSaved()
+        {
+            var paymentRequest = new PaymentRequest() { Amount = 0 };
+
+            var sut = new PaymentService(_paymentData.Object, _accountData.Object);
+
+            var result = await sut.CreatePaymentRequest(paymentRequest);
+
+            Assert.AreEqual(false, result.Success);
+        }
+
+        [Test]
         public async Task WhenAmountLessThanBalance_PaymentSavedAsPending()
         {
             var paymentRequest = new PaymentRequest() { Amount = 100 };

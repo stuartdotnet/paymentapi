@@ -7,8 +7,8 @@ using System.Linq;
 
 namespace PaymentAPI.IntegrationTests
 {
-    public class APIWebApplicationFactory<StartUp>
-        : WebApplicationFactory<StartUp> where StartUp : class
+    public class APIWebApplicationFactory<TStartUp>
+        : WebApplicationFactory<TStartUp> where TStartUp : class
     {
         protected override void ConfigureWebHost(IWebHostBuilder builder)
         {
@@ -20,7 +20,7 @@ namespace PaymentAPI.IntegrationTests
 
                 services.Remove(descriptor);
 
-                services.AddDbContext<PaymentsContext>(options =>
+                services.AddDbContextPool<PaymentsContext>(options =>
                 {
                     options.UseInMemoryDatabase("InMemoryDbForTesting");
                 });

@@ -19,6 +19,8 @@ namespace PaymentAPI.Business
 
         public async Task<Result<PaymentRequest>> CreatePaymentRequest(PaymentRequest paymentRequest)
         {
+            if (paymentRequest.Amount <= 0) return new Result<PaymentRequest> { Success = false, Message = "Payment must be greater than zero." };
+
             var balanceResult = await _accountData.GetBalance(paymentRequest.AccountId);
             if (!balanceResult.Success) return new Result<PaymentRequest> { Success = false, Message = balanceResult.Message };
 

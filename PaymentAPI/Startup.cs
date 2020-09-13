@@ -1,6 +1,7 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -73,11 +74,10 @@ namespace PaymentAPI
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseCors();
             }
-            else
-            {
-                app.UseMiddleware<ExceptionMiddleware>();
-            }
+
+            app.UseMiddleware<ExceptionMiddleware>();
 
             app.UseSwagger();
 
@@ -92,6 +92,7 @@ namespace PaymentAPI
             app.UseRouting();
 
             app.UseAuthorization();
+
 
             app.UseEndpoints(endpoints =>
             {
