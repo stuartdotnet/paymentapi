@@ -1,12 +1,12 @@
 # Build and run
 
-##Visual Studio
+## Visual Studio
 Hit Ctrl F5 :)
 
-##Visual Studio Code
+## Visual Studio Code
 Hit Ctrl F5 :)
 
-##Terminal
+## Terminal
 Navigate to project directory PaymentAPI/PaymentAPI in a console and run
 
 `dotnet restore`
@@ -19,7 +19,7 @@ Nagivate to http://localhost:5000
 
 Swagger will describe the endpoints.
 
-#Testing
+# Testing
 
 If you aren't using an IDE with built-in testing features, execute the following command at a command prompt in the PaymentAPI.UnitTests or PaymentAPI.IntegrationTests folder:
 
@@ -29,27 +29,29 @@ If you aren't using an IDE with built-in testing features, execute the following
 Some issues getting the integration tests to run, solved by using AddDbContextPool instead of AddDbContext in the APIWebApplicationFactory ConfigureWebHost, that took some problem solving :D
 I'd be keen to add some database cleanup between tests too, I've made them robust enough to work in any order by working on different records but they'd be easy to break if someone added one and didn't realise that record was already being modified by another test.
 
-#Continuous Integration
+# Continuous Integration
 Built using https://github.com/stuartdotnet/paymentapi/blob/master/azure-pipelines.yml
+
 TODO run integration tests
+
 TODO build release pipeline to an Azure Web App
 
-#Self Publishing
+# Self Publishing
 From PaymentAPI/PaymentAPI run
 
 `dotnet publish -o <your local directory>`
 
 `dotnet PaymentAPI.dll`
 
-#Configuration
+# Configuration
 Set your machine's local Environment setting by creating a setting called ASPNETCORE_ENVIRONMENT and setting it to Development or Production
 
-#Notes
+# Notes
 
 - Simple repo multi tier architecture as such a small application, but I've tried to separate concerns as well as possible, and keep the services separate. For example, the balance and the payments come from different services, and are only put together at the Application level, making this easier if these domains need to be split into different projects for a microservice transition.
 - Different error handling for different environments
 
-#TODO
+# TODO
 
 - SSL
 - No authentication yet, hence the need to pass account id instead of using logged in user. Would use IdentityServer4
