@@ -1,3 +1,5 @@
+[![Build Status](https://stuartdobson.visualstudio.com/PaymentAPI/_apis/build/status/stuartdotnet.paymentapi?branchName=master)](https://stuartdobson.visualstudio.com/PaymentAPI/_build/latest?definitionId=15&branchName=master)
+
 # Build and run
 
 ## Visual Studio
