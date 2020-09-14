@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using NUnit.Framework;
+using PaymentAPI.Business;
 using PaymentAPI.Models;
 using System;
 using System.Net;
@@ -23,7 +24,6 @@ namespace PaymentAPI.IntegrationTests
             _client = _factory.CreateClient();
         }
 
-        // fix
         [Test]
         public async Task WhenPaymentRequestPosted_ThenTheResultIsCreated()
         {
@@ -40,7 +40,22 @@ namespace PaymentAPI.IntegrationTests
         }
 
         [Test]
-        public async Task WhenBadPaymentRequestPosted_ThenTheResultIsBadRequest()
+        public async Task WhenPaymentRequestGreaterThanBalance_ThenTheResultIsCancelled()
+        {
+            NewPaymentRequest paymentRequest = new NewPaymentRequest()
+            {
+                AccountId = 1,
+                Date = new DateTime(2020, 1, 1),
+                Amount = 300
+            };
+            var content = new StringContent(JsonConvert.SerializeObject(paymentRequest), Encoding.UTF8, "application/json");
+
+            var result = await _client.PostAsync(CONTROLLERURL, content);
+            Assert.AreEqual(HttpStatusCode.BadRequest, result.StatusCode, result.ReasonPhrase);
+        }
+
+        [Test]
+        public async Task WhenZeroPaymentRequestPosted_ThenTheResultIsBadRequest()
         {
             NewPaymentRequest paymentRequest = new NewPaymentRequest()
             {
